@@ -1,4 +1,18 @@
-* {
-    margin: 0;
-    padding: 0;
+.container {
+    
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.clue, .attempts {
+    height: 20px;
+    width: 600px;
+    padding: 5px;
+    border: 2px solid gray;
+}
+
+
