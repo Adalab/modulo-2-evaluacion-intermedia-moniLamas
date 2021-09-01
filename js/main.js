@@ -7,6 +7,8 @@ const guessSubmit = document.querySelector('.js_guessSubmit');
 
 const clue = document.querySelector('.js_textClue');
 const attempts = document.querySelector('.js_attempts');
+let count = 1;
+
 
 function checkNumber() {
     let userGuess = Number(guess.value);
@@ -20,16 +22,18 @@ function checkNumber() {
         clue.innerHTML = `El número debe estar
         entre 1 y 100.`;
     }
+
 }
 
 function countAttempts() {
-
+    attempts.innerHTML = `Número de intentos: ${count++}`;
 }
 
 function handleSubmitBtn(event) {
     event.preventDefault();
     checkNumber();
     console.log(randomNumber);
+    countAttempts();
 }
 
 guessSubmit.addEventListener('click', handleSubmitBtn);
