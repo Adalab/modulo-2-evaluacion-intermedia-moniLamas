@@ -1,28 +1,37 @@
 'use strict';
 
-let randomNumber = Math.ceil(Math.random() * 100);
-
 const guess = document.querySelector('.js_guessField');
 const guessSubmit = document.querySelector('.js_guessSubmit');
-
 const clue = document.querySelector('.js_textClue');
 const attempts = document.querySelector('.js_attempts');
+
+const randomNumber = getRandomNumber(100);
+
 let count = 1;
 
+//Funciones
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max);
+}
+
+function writeClue(message) {
+    clue.innerHTML = message;
+}
 
 function checkNumber() {
-    let userGuess = Number(guess.value);
-    if (userGuess === randomNumber) {
-        clue.innerHTML = 'Has ganado campeona!!!';
-    } else if (userGuess > randomNumber) {
-        clue.innerHTML = 'Demasiado alto.';
-    } else if (userGuess < randomNumber) {
-        clue.innerHTML = 'Demasiado bajo.';
-    } else {
-        clue.innerHTML = `El número debe estar
-        entre 1 y 100.`;
-    }
+    let userGuess = parseInt(guess.value);
 
+    if (isNaN(userGuess)) {
+        writeClue('Pista: Tienes que escribir un número entero.');
+    } else if (userGuess <= 0 || userGuess > 100) {
+        writeClue('el número deber estar entre 1 y 100.');
+    } else if (userGuess < randomNumber) {
+        writeClue('Demasiado bajo.');
+    } else if (userGuess > randomNumber) {
+        writeClue('Demasiado alto.');
+    } else if (userGuess === randomNumber) {
+        writeClue(clue.innerHTML = 'Has ganado campeona!!!');
+    }
 }
 
 function countAttempts() {
